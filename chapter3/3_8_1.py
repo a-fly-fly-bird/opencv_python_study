@@ -5,7 +5,12 @@ import numpy as np
 # 读取原始载体图像
 lena = cv2.imread("images/1.jpg", 0)
 # 读取水印图像
-watermark = cv2.imread("watermark.bmp", 0)
+print(lena.shape)
+
+watermark = np.zeros((lena.shape[0], lena.shape[1]), dtype=np.uint8)
+watermark[0:100, :] = 255
+watermark[:, 910:1010] = 255
+
 # 将水印图像内的值255处理为1，以方便嵌入
 # 后续章节会介绍使用threshold处理
 w = watermark[:, :] > 0
